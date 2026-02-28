@@ -50,7 +50,7 @@ A modern, user-friendly job search application built with Streamlit and powered 
 
 1. **Clone or navigate to the project directory**:
    ```bash
-   cd /Users/savsachd/projects/splunk/Bb
+   cd /path/to/job-search-app
    ```
 
 2. **Install Poetry** (if not already installed):
