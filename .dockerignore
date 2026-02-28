@@ -1,0 +1,19 @@
+.git
+.gitignore
+.idea
+.venv
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+
+# Local runtime/state files
+.env
+.env.bak
+jobs.db
+generated_resumes/
+
+# OS/editor files
+.DS_Store
+*.swp
