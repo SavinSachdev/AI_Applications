@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Doe - Resume</title>
+    <style>
+        @page {
+            size: letter;
+            margin: 0.75in;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Calibri', 'Arial', sans-serif;
+            font-size: 10.5pt;
+            line-height: 1.4;
+            color: #000000;
+            background: linear-gradient(to bottom, #f8f9fa 0%, #ffffff 200px);
+        }
+        
+        .container {
+            max-width: 8.5in;
+            margin: 0 auto;
+        }
+        
+        /* Header - Clean centered format with background */
+        .header {
+            text-align: center;
+            margin-bottom: 18px;
+            padding: 20px 15px 12px 15px;
+            background: linear-gradient(135deg, #2c5aa0 0%, #4a7bc8 100%);
+            border-radius: 0px;
+            margin: -0.75in -0.75in 18px -0.75in;
+            padding-left: 0.75in;
+            padding-right: 0.75in;
+        }
+        
+        .name {
+            font-size: 24pt;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+            text-shadow: 0px 1px 2px rgba(0,0,0,0.1);
+        }
+        
+        .contact-info {
+            font-size: 9.5pt;
+            color: #f0f4f8;
+            line-height: 1.4;
+        }
+        
+        .contact-info a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .separator {
+            margin: 0 8px;
+            color: #d0dce8;
+        }
+        
+        /* Section headers */
+        .section {
+            margin-bottom: 14px;
+            page-break-inside: avoid;
+        }
+        
+        .section-title {
+            font-size: 11.5pt;
+            font-weight: 700;
+            color: #2c5aa0;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 8px;
+            padding: 4px 8px;
+            padding-left: 12px;
+            background: linear-gradient(to right, #e8f0f8 0%, #ffffff 100%);
+            border-left: 3px solid #2c5aa0;
+        }
+        
+        /* Summary */
+        .summary-text {
+            line-height: 1.45;
+            text-align: left;
+            padding: 8px 12px;
+            background: #f8fafb;
+            border-radius: 4px;
+        }
+        
+        /* Experience/Education Entry */
+        .entry {
+            margin-bottom: 12px;
+            page-break-inside: avoid;
+            padding: 8px 12px;
+            background: #fafbfc;
+            border-radius: 4px;
+            border-left: 2px solid #e0e8f0;
+        }
+        
+        .entry-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 3px;
+        }
+        
+        .entry-title {
+            font-size: 11pt;
+            font-weight: 700;
+            color: #000000;
+        }
+        
+        .entry-date {
+            font-size: 9.5pt;
+            font-weight: 600;
+            color: #444;
+            white-space: nowrap;
+            font-style: italic;
+        }
+        
+        .entry-subtitle {
+            font-size: 10pt;
+            color: #333;
+            margin-bottom: 5px;
+            font-style: italic;
+        }
+        
+        .entry-company {
+            font-weight: 600;
+        }
+        
+        /* Bullets */
+        .bullets {
+            margin-left: 18px;
+            margin-top: 4px;
+        }
+        
+        .bullet {
+            margin-bottom: 4px;
+            position: relative;
+            line-height: 1.4;
+            padding-left: 0px;
+        }
+        
+        .bullet::before {
+            content: "•";
+            position: absolute;
+            left: -14px;
+            color: #2c5aa0;
+            font-weight: bold;
+        }
+        
+        /* Skills */
+        .skills-text {
+            line-height: 1.5;
+        }
+        
+        /* Projects */
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 3px;
+        }
+        
+        .project-title {
+            font-size: 11pt;
+            font-weight: 700;
+            color: #000000;
+        }
+        
+        .project-date {
+            font-size: 9.5pt;
+            font-weight: 600;
+            color: #444;
+            font-style: italic;
+        }
+        
+        /* GPA */
+        .gpa {
+            font-size: 9.5pt;
+            margin-top: 2px;
+            font-style: italic;
+        }
+        
+        /* Honors */
+        .honors {
+            margin-left: 18px;
+            margin-top: 4px;
+        }
+        
+        .honor {
+            margin-bottom: 3px;
+            position: relative;
+            line-height: 1.4;
+        }
+        
+        .honor::before {
+            content: "•";
+            position: absolute;
+            left: -14px;
+            color: #2c5aa0;
+            font-weight: bold;
+        }
+        
+        /* Certifications */
+        .cert {
+            margin-bottom: 4px;
+            margin-left: 18px;
+            position: relative;
+            line-height: 1.4;
+        }
+        
+        .cert::before {
+            content: "•";
+            position: absolute;
+            left: -14px;
+            color: #2c5aa0;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="name">John Doe</div>
+            <div class="contact-info">
+                <a href="mailto:john.doe@example.com">john.doe@example.com</a>
+                <span class="separator">|</span>(555) 123-4567
+                <span class="separator">|</span>San Francisco, CA
+                <span class="separator">|</span><a href="linkedin.com/in/johndoe">LinkedIn</a>
+                <span class="separator">|</span><a href="github.com/johndoe">GitHub</a>
+            </div>
+        </div>
+        
+        <!-- Summary -->
+        
+        <div class="section">
+            <div class="section-title">Summary</div>
+            <div class="summary-text">Results-driven Senior Software Engineer with 5+ years of experience building scalable distributed systems and leading high-performing engineering teams. Proven track record of delivering complex projects that serve millions of users while maintaining 99.9% uptime. Expert in cloud architecture, microservices, and modern development practices. Passionate about mentoring engineers and driving technical excellence.</div>
+        </div>
+        
+        
+        <!-- Experience -->
+        
+        <div class="section">
+            <div class="section-title">Experience</div>
+            
+            <div class="entry">
+                <div class="entry-header">
+                    <div class="entry-title">Senior Software Engineer</div>
+                    <div class="entry-date">Jan 2020 - Present</div>
+                </div>
+                <div class="entry-subtitle">
+                    <div class="entry-company">Tech Corp, San Francisco, CA</div>
+                </div>
+                
+                <div class="bullets">
+                    
+                    <div class="bullet">Led development of microservices architecture serving 1M+ daily active users, improving system reliability by 45%</div>
+                    
+                    <div class="bullet">Architected and implemented real-time data pipeline processing 500K events/second using Kafka and Spark</div>
+                    
+                    <div class="bullet">Mentored team of 5 junior engineers, establishing code review practices that reduced bug rate by 30%</div>
+                    
+                    <div class="bullet">Optimized database queries reducing average API response time from 800ms to 120ms (85% improvement)</div>
+                    
+                </div>
+                
+            </div>
+            
+            <div class="entry">
+                <div class="entry-header">
+                    <div class="entry-title">Software Engineer</div>
+                    <div class="entry-date">Jun 2018 - Dec 2019</div>
+                </div>
+                <div class="entry-subtitle">
+                    <div class="entry-company">StartupXYZ, Remote</div>
+                </div>
+                
+                <div class="bullets">
+                    
+                    <div class="bullet">Developed RESTful APIs using Python/Flask serving 100K+ requests per day with 99.9% uptime</div>
+                    
+                    <div class="bullet">Implemented CI/CD pipeline reducing deployment time from 2 hours to 15 minutes using Jenkins and Docker</div>
+                    
+                    <div class="bullet">Built automated testing framework increasing code coverage from 40% to 85%</div>
+                    
+                    <div class="bullet">Collaborated with product team to deliver 15+ features across 3 major product releases</div>
+                    
+                </div>
+                
+            </div>
+            
+        </div>
+        
+        
+        <!-- Education -->
+        
+        <div class="section">
+            <div class="section-title">Education</div>
+            
+            <div class="entry">
+                <div class="entry-header">
+                    <div class="entry-title">Bachelor of Science in Computer Science</div>
+                    <div class="entry-date">2018</div>
+                </div>
+                <div class="entry-subtitle">
+                    <div class="entry-company">University of California, Berkeley, CA</div>
+                </div>
+                
+                <div class="gpa">GPA: 3.8/4.0</div>
+                
+                
+                <div class="honors">
+                    
+                    <div class="honor">Dean&#39;s List (6 semesters)</div>
+                    
+                    <div class="honor">Graduated with Honors</div>
+                    
+                </div>
+                
+            </div>
+            
+        </div>
+        
+        
+        <!-- Skills -->
+        
+        <div class="section">
+            <div class="section-title">Skills</div>
+            <div class="skills-text">Python, Java, JavaScript, TypeScript, React, Node.js, AWS, Docker, Kubernetes, PostgreSQL, MongoDB, Redis, Kafka, Spark, Git, CI/CD, Agile/Scrum</div>
+        </div>
+        
+        
+        <!-- Projects -->
+        
+        <div class="section">
+            <div class="section-title">Projects</div>
+            
+            <div class="entry">
+                <div class="project-header">
+                    <div class="project-title">Open Source ML Framework</div>
+                    <div class="project-date">2023</div>
+                </div>
+                
+                <div class="bullets">
+                    
+                    <div class="bullet">Developed machine learning framework with 2K+ GitHub stars, enabling faster model training by 40%</div>
+                    
+                    <div class="bullet">Implemented distributed training support using Ray, scaling to 100+ GPUs across multiple nodes</div>
+                    
+                    <div class="bullet">Created comprehensive documentation and tutorials adopted by 500+ developers worldwide</div>
+                    
+                </div>
+                
+            </div>
+            
+            <div class="entry">
+                <div class="project-header">
+                    <div class="project-title">Real-time Analytics Dashboard</div>
+                    <div class="project-date">2022</div>
+                </div>
+                
+                <div class="bullets">
+                    
+                    <div class="bullet">Built interactive dashboard using React and D3.js visualizing 10M+ data points in real-time</div>
+                    
+                    <div class="bullet">Integrated WebSocket connections for live data updates with sub-second latency</div>
+                    
+                    <div class="bullet">Deployed on AWS using ECS, handling 50K concurrent users during peak traffic</div>
+                    
+                </div>
+                
+            </div>
+            
+        </div>
+        
+        
+        <!-- Certifications -->
+        
+        <div class="section">
+            <div class="section-title">Certifications</div>
+            
+            <div class="cert">AWS Certified Solutions Architect - Amazon Web Services (2022)</div>
+            
+            <div class="cert">Certified Kubernetes Administrator - CNCF (2021)</div>
+            
+        </div>
+        
+    </div>
+</body>
+</html>

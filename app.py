@@ -5,12 +5,11 @@ from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor
 from database import JobDatabase
 from resume_tailor import ResumeTailor
-from pdf_generator import ResumePDFGenerator
+from html_pdf_generator import HTMLResumePDFGenerator
 from dotenv import load_dotenv
 import os
-import io
 import re
-from docx import Document
+
 
 # Load environment variables - use explicit path for Poetry
 from pathlib import Path
@@ -94,7 +93,8 @@ def _background_tailor_resume_pdf(
     worker_db = JobDatabase("jobs.db")
     worker_db.save_tailored_resume(job_id, tailored_text, ats_scores)
 
-    pdf_generator = ResumePDFGenerator()
+    # Use HTML-based PDF generator with modern template
+    pdf_generator = HTMLResumePDFGenerator(template_name='professional')
     pdf_bytes = pdf_generator.generate_pdf(
         result.resume,
         job_title=job_title,
@@ -233,14 +233,20 @@ with main_tab:
                     jobs_df = scrape_jobs(
                         site_name=selected_sites,
                         search_term=job_title,
-                        location=location if location else None,
+                        google_search_term = job_title,
+                        location=location if location else "San Francisco, CA",
                         results_wanted=results_wanted,
                         hours_old=hours_old,
-                        country_indeed='USA'  # Can be made configurable
+                        country_indeed='USA',
+                        linkedin_fetch_description= True# Can be made configurable
                     )
                     
                     if jobs_df is not None and len(jobs_df) > 0:
                         original_count = len(jobs_df)
+                        print(f"Found {original_count} jobs on {selected_sites}")
+                        print(jobs_df['description'].head())
+                        print("--------------")
+                        print(jobs_df['job_url'].head())
 
                         # Normalize/clean description values once so filtering and storage are consistent.
                         if 'description' in jobs_df.columns:
@@ -987,7 +993,7 @@ with resume_tab:
                                     with col_dl2:
                                         # Generate PDF from structured ResumeData
                                         try:
-                                            pdf_generator = ResumePDFGenerator()
+                                            pdf_generator = HTMLResumePDFGenerator(template_name='professional')
                                             pdf_bytes = pdf_generator.generate_pdf(
                                                 result.resume,  # Pass ResumeData directly
                                                 job_title=selected_job['title'],
@@ -1064,7 +1070,7 @@ with resume_tab:
                                     # Cache it for future use
                                     st.session_state[cache_key] = resume_data
                                 
-                                pdf_generator = ResumePDFGenerator()
+                                pdf_generator = HTMLResumePDFGenerator(template_name='professional')
                                 pdf_bytes = pdf_generator.generate_pdf(
                                     resume_data,  # Pass ResumeData
                                     job_title=selected_job['title'],

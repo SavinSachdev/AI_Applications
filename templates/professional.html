@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ contact.name }} - Resume</title>
+    <style>
+        @page {
+            size: letter;
+            margin: 0.55in 0.65in;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Garamond', 'Georgia', 'Times New Roman', serif;
+            font-size: 11pt;
+            line-height: 1.5;
+            color: #1a1a1a;
+        }
+        
+        .container {
+            max-width: 8.5in;
+            margin: 0 auto;
+        }
+        
+        /* Header - Executive style */
+        .header {
+            text-align: center;
+            margin-bottom: 18px;
+            padding-bottom: 14px;
+            border-bottom: 3px double #1a1a1a;
+        }
+        
+        .name {
+            font-size: 32pt;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        .contact-info {
+            font-size: 10pt;
+            color: #333;
+            line-height: 1.7;
+            font-family: 'Calibri', 'Helvetica', 'Arial', sans-serif;
+        }
+        
+        .contact-info a {
+            color: #1a4d7a;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .separator {
+            margin: 0 12px;
+            color: #666;
+        }
+        
+        /* Section - ATS optimized */
+        .section {
+            margin-bottom: 18px;
+            page-break-inside: avoid;
+        }
+        
+        .section-title {
+            font-size: 14pt;
+            font-weight: 700;
+            color: #1a1a1a;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 2.5px solid #1a1a1a;
+        }
+        
+        /* Summary */
+        .summary-text {
+            text-align: justify;
+            margin-bottom: 4px;
+            font-family: 'Calibri', 'Helvetica', 'Arial', sans-serif;
+            line-height: 1.6;
+        }
+        
+        /* Experience/Education Entry */
+        .entry {
+            margin-bottom: 15px;
+            page-break-inside: avoid;
+        }
+        
+        .entry-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 3px;
+        }
+        
+        .entry-title {
+            font-size: 12pt;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+        
+        .entry-date {
+            font-size: 10pt;
+            font-weight: 600;
+            color: #444;
+            white-space: nowrap;
+            font-family: 'Calibri', 'Helvetica', 'Arial', sans-serif;
+        }
+        
+        .entry-subtitle {
+            display: flex;
+            justify-content: space-between;
+            font-size: 10.5pt;
+            color: #333;
+            margin-bottom: 7px;
+            font-family: 'Calibri', 'Helvetica', 'Arial', sans-serif;
+        }
+        
+        .entry-company {
+            flex: 1;
+            font-weight: 600;
+            font-style: italic;
+        }
+        
+        /* Bullets - ATS friendly */
+        .bullets {
+            margin-left: 22px;
+            margin-top: 7px;
+            font-family: 'Calibri', 'Helvetica', 'Arial', sans-serif;
+        }
+        
+        .bullet {
+            margin-bottom: 5px;
+            text-align: justify;
+            position: relative;
+            line-height: 1.5;
+        }
+        
+        .bullet::before {
+            content: "•";
+            position: absolute;
+            left: -18px;
+            color: #1a1a1a;
+            font-weight: bold;
+            font-size: 12pt;
+        }
+        
+        /* Skills */
+        .skills-text {
+            line-height: 1.7;
+            font-family: 'Calibri', 'Helvetica', 'Arial', sans-serif;
+        }
+        
+        /* Projects */
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 3px;
+        }
+        
+        .project-title {
+            font-size: 12pt;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+        
+        .project-date {
+            font-size: 10pt;
+            font-weight: 600;
+            color: #444;
+            font-family: 'Calibri', 'Helvetica', 'Arial', sans-serif;
+        }
+        
+        /* GPA */
+        .gpa {
+            text-align: right;
+            font-size: 10pt;
+            margin-top: 4px;
+            font-family: 'Calibri', 'Helvetica', 'Arial', sans-serif;
+            font-weight: 600;
+        }
+        
+        /* Honors */
+        .honors {
+            margin-left: 22px;
+            margin-top: 7px;
+            font-family: 'Calibri', 'Helvetica', 'Arial', sans-serif;
+        }
+        
+        .honor {
+            margin-bottom: 4px;
+            position: relative;
+            line-height: 1.5;
+        }
+        
+        .honor::before {
+            content: "•";
+            position: absolute;
+            left: -18px;
+            color: #1a1a1a;
+            font-weight: bold;
+            font-size: 12pt;
+        }
+        
+        /* Certifications */
+        .cert {
+            margin-bottom: 5px;
+            margin-left: 22px;
+            position: relative;
+            font-family: 'Calibri', 'Helvetica', 'Arial', sans-serif;
+            line-height: 1.5;
+        }
+        
+        .cert::before {
+            content: "•";
+            position: absolute;
+            left: -18px;
+            color: #1a1a1a;
+            font-weight: bold;
+            font-size: 12pt;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="name">{{ contact.name }}</div>
+            <div class="contact-info">
+                {% if contact.email %}<a href="mailto:{{ contact.email }}">{{ contact.email }}</a>{% endif %}
+                {% if contact.phone %}<span class="separator">|</span>{{ contact.phone }}{% endif %}
+                {% if contact.location %}<span class="separator">|</span>{{ contact.location }}{% endif %}
+                {% if contact.linkedin %}<span class="separator">|</span><a href="{{ contact.linkedin }}">LinkedIn</a>{% endif %}
+                {% if contact.github %}<span class="separator">|</span><a href="{{ contact.github }}">GitHub</a>{% endif %}
+            </div>
+        </div>
+        
+        <!-- Summary -->
+        {% if summary %}
+        <div class="section">
+            <div class="section-title">Professional Summary</div>
+            <div class="summary-text">{{ summary }}</div>
+        </div>
+        {% endif %}
+        
+        <!-- Experience -->
+        {% if experience %}
+        <div class="section">
+            <div class="section-title">Professional Experience</div>
+            {% for exp in experience %}
+            <div class="entry">
+                <div class="entry-header">
+                    <div class="entry-title">{{ exp.title }}</div>
+                    <div class="entry-date">{{ exp.start_date }} - {{ exp.end_date or 'Present' }}</div>
+                </div>
+                <div class="entry-subtitle">
+                    <div class="entry-company">{{ exp.company }}{% if exp.location %}, {{ exp.location }}{% endif %}</div>
+                </div>
+                {% if exp.bullets %}
+                <div class="bullets">
+                    {% for bullet in exp.bullets %}
+                    <div class="bullet">{{ bullet }}</div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        
+        <!-- Education -->
+        {% if education %}
+        <div class="section">
+            <div class="section-title">Education</div>
+            {% for edu in education %}
+            <div class="entry">
+                <div class="entry-header">
+                    <div class="entry-title">{{ edu.degree }}</div>
+                    <div class="entry-date">{{ edu.end_date or 'Present' }}</div>
+                </div>
+                <div class="entry-subtitle">
+                    <div class="entry-company">{{ edu.institution }}{% if edu.location %}, {{ edu.location }}{% endif %}</div>
+                </div>
+                {% if edu.gpa %}
+                <div class="gpa">GPA: {{ edu.gpa }}</div>
+                {% endif %}
+                {% if edu.honors %}
+                <div class="honors">
+                    {% for honor in edu.honors %}
+                    <div class="honor">{{ honor }}</div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        
+        <!-- Skills -->
+        {% if skills %}
+        <div class="section">
+            <div class="section-title">Technical Skills</div>
+            <div class="skills-text">{{ skills|join(', ') }}</div>
+        </div>
+        {% endif %}
+        
+        <!-- Projects -->
+        {% if projects %}
+        <div class="section">
+            <div class="section-title">Projects</div>
+            {% for proj in projects %}
+            <div class="entry">
+                <div class="project-header">
+                    <div class="project-title">{{ proj.title }}</div>
+                    {% if proj.date %}<div class="project-date">{{ proj.date }}</div>{% endif %}
+                </div>
+                {% if proj.bullets %}
+                <div class="bullets">
+                    {% for bullet in proj.bullets %}
+                    <div class="bullet">{{ bullet }}</div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        
+        <!-- Certifications -->
+        {% if certifications %}
+        <div class="section">
+            <div class="section-title">Certifications</div>
+            {% for cert in certifications %}
+            <div class="cert">{{ cert.name }} - {{ cert.issuer }}{% if cert.date %} ({{ cert.date }}){% endif %}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

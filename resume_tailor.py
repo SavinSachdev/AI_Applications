@@ -224,8 +224,33 @@ Return a structured ResumeData object with all sections properly filled with det
             return result
             
         except Exception as e:
-            print(f"Resume tailoring failed: {str(e)}")
-            raise
+            error_type = type(e).__name__
+            error_msg = str(e)
+            print(f"\n{'='*60}")
+            print(f"❌ Resume tailoring failed")
+            print(f"Error Type: {error_type}")
+            print(f"Error Message: {error_msg}")
+            print(f"{'='*60}\n")
+            
+            # Provide more helpful error messages
+            if "connection" in error_msg.lower() or "timeout" in error_msg.lower():
+                raise ConnectionError(
+                    f"Failed to connect to OpenAI API. Please check your internet connection and API key. "
+                    f"Original error: {error_msg}"
+                )
+            elif "api" in error_msg.lower() and "key" in error_msg.lower():
+                raise ValueError(
+                    f"OpenAI API key issue. Please verify your API key is valid and has sufficient credits. "
+                    f"Original error: {error_msg}"
+                )
+            elif "rate" in error_msg.lower() and "limit" in error_msg.lower():
+                raise Exception(
+                    f"OpenAI API rate limit exceeded. Please wait a moment and try again. "
+                    f"Original error: {error_msg}"
+                )
+            else:
+                # Re-raise the original exception with more context
+                raise Exception(f"Resume tailoring failed ({error_type}): {error_msg}") from e
     
     def get_ats_score(self, resume_text: str, job_description: str) -> Dict[str, float]:
         """
