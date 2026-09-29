@@ -7,10 +7,15 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 
 WORKDIR /app
 
-# Minimal system deps needed for common Python wheels and runtime utilities.
+# Minimal system deps needed for common Python wheels, WeasyPrint, and runtime utilities.
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     curl \
+    fonts-dejavu-core \
+    libglib2.0-0 \
+    libharfbuzz-subset0 \
+    libpango-1.0-0 \
+    libpangoft2-1.0-0 \
     && rm -rf /var/lib/apt/lists/*
 
 RUN pip install "poetry==$POETRY_VERSION"
